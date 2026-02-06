@@ -1,0 +1,32 @@
+# Large Directories
+qairt/
+qnn_env/
+toolchain_11/
+android-ndk*/
+__pycache__/
+42dot_dataset/
+calibration_data/
+
+# Build Artifacts
+libs/
+final_binary/
+
+# Large Files
+*.bin
+*.so
+*.o
+*.a
+*.onnx
+*.onnx_data
+*.pt
+*.pth
+*.raw
+*.qik
+*.deb
+
+# Logs and Configs (Keep htp_config for repo)
+*.log
+*.out
+!htp_config.json
+!input_list.txt
+!input_data/
