@@ -8,22 +8,22 @@ The value chain from PyTorch to Edge Device is as follows:
 
 ```mermaid
 graph TD
-    A[PyTorch Model (HF)] -->|Export & Fix| B(ONNX Model)
-    B -->|Bypass 2GB Limit| C{External Data ONNX}
-    C -->|qnn-onnx-converter| D[QNN C++/BIN Assets]
+    A["PyTorch Model (HF)"] -->|"Export & Fix"| B("ONNX Model")
+    B -->|"Bypass 2GB Limit"| C{"External Data ONNX"}
+    C -->|"qnn-onnx-converter"| D["QNN C++/BIN Assets"]
     
     subgraph "Host (x86_64) Processing"
-        D -->|Compile (GCC/Clang)| E[Host .so Library]
-        E -->|qnn-context-binary-generator| F[HTP Context Binary (.serialized)]
+        D -->|"Compile (GCC/Clang)"| E["Host .so Library"]
+        E -->|"qnn-context-binary-generator"| F["HTP Context Binary (.serialized)"]
     end
     
     subgraph "Target (QCS9075) Processing"
-        D -->|Compile (GCC 11.2)| G[Target .so Library]
+        D -->|"Compile (GCC 11.2)"| G["Target .so Library"]
     end
     
-    F -->|Deploy| H[Target Device (IQ-9075)]
+    F -->|Deploy| H["Target Device (IQ-9075)"]
     G -->|Deploy| H
-    I[QNN Libs (System, Htp, Skel, etc)] -->|Deploy| H
+    I["QNN Libs (System, Htp, Skel, etc)"] -->|Deploy| H
 ```
 
 ### Key Artifacts
