@@ -42,18 +42,22 @@ graph TD
   - Host: `clang` (for simulation/context generation)
   - Target: `g++-11-aarch64-linux-gnu` (Specific version required for HTP v73 compatibility)
 
-### 2. Environment Variables
-Setup your shell environment before running any commands:
-```bash
-cd ~/workspace/qnn_ws
-source qnn_env/bin/activate  # Python venv
-source qairt/2.43.0.260128/bin/envsetup.sh
-export PATH="${PATH}:/usr/bin"
-# Critical for Cross-Compilation
-export QNN_AARCH64_UBUNTU_GCC_94="/home/hyeokjun/workspace/qnn_ws/toolchain_11" 
-```
+### 2. Environment Variables & Setup
+We provide automated scripts to configure the environment and toolchain. 
 
-> **Note:** We use a custom `toolchain_11` directory to force QNN to use GCC 11.2 instead of the system default (often GCC 13) or the older SDK default (GCC 9.4), ensuring compatibility with the device's HTP v73 library requirements.
+1. **Setup Toolchain (One-time):**
+   Run this script to install GCC 11 and configure the custom toolchain directory.
+   ```bash
+   ./setup_toolchain.sh
+   ```
+
+2. **Activate Environment (Every Session):**
+   Run this to activate Python venv, QNN SDK, and export necessary variables.
+   ```bash
+   source env.sh
+   ```
+
+> **Note:** The `setup_toolchain.sh` script automates the creation of `toolchain_11`, which is necessary to force QNN to use GCC 11.2 (HTP v73 requirement) instead of the system default.
 
 ---
 
